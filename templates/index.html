@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Mumbai House Price Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1> Mumbai House Price Prediction</h1>
+        <form action="{{ url_for('predict') }}" method="post">
+            <div>
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" required>
+            </div>
+            <div>
+                <label for="bhk">BHK:</label>
+                <input type="number" id="bhk" name="bhk" min="1" max="6" required>
+            </div>
+            <div>
+                <label for="price_per_sqft">Price per Square Foot:</label>
+                <input type="number" step="0.01" id="price_per_sqft" name="price_per_sqft" min="6000" max="56629.13" required>
+            </div>
+            <div>
+                <label for="total_sqft">Total_sqft:</label>
+                <input type="number" id="total_sqft" name="total_sqft" min="127" max="12600" required>
+            </div>
+            <div>
+                <button type="submit">Predict</button>
+            </div>
+        </form>
+        {% if prediction_text %}
+        <div class="result">
+            <h2>{{ prediction_text }}</h2>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
